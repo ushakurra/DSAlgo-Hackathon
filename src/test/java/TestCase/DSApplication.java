@@ -1,14 +1,29 @@
 package TestCase;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
 import org.testng.annotations.Test;
 
 import ObjectRepository.DSIntro;
 import ObjectRepository.Login;
 import ObjectRepository.array;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 
 public class DSApplication {
-@Test	
+
+@Test(priority = 1)	
+@Description ("Base Testcase")
+@Severity(SeverityLevel.BLOCKER)
+
  public void DSAlgo() throws InterruptedException {
  System.setProperty("webdriver.chrome.driver","C:\\chromedriver.exe");
  WebDriver driver = new ChromeDriver ();
@@ -43,5 +58,16 @@ public class DSApplication {
  
 	}
 
+@Test
+public void itestlistener () {
+	System.out.println("its in failed assertion");
+
+	Assert.assertEquals("Usha","Kurra");
+}
+
+public static WebDriver getDriver() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }

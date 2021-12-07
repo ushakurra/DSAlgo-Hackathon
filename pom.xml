@@ -3,6 +3,55 @@
   <groupId>DSAlgoPom</groupId>
   <artifactId>DSAlgoPom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+ <properties>
+ <aspectj.version>1.9.7</aspectj.version>
+ </properties>
+  
+  <reporting>
+  <excludeDefaults>true</excludeDefaults>
+  <plugins>
+  <plugin>
+  <groupId>io.qameta.allure</groupId>
+  <artifactId>allure-testng</artifactId>
+  <version>2.17.0</version>
+  </plugin>
+  </plugins>
+  </reporting>
+  <build>
+		<plugins>
+		<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<fork> true </fork>
+					<executable>D:\Program Files\Java\jdk-11.0.11\bin\javac.exe</executable>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+				<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
   <name>DSAlgoPom</name>
   <description>DSAlgoPom</description>
  <dependencies>
@@ -78,6 +127,13 @@
    <scope>test</scope>
   </dependency>  
    
+   <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-testng</artifactId>
+    <version>2.17.0</version>
+</dependency>
+  
   </dependencies>
   
 </project>
